@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>日历</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="./calendar.css">
+    </head>
+    <body>
+        <div class="header">
+          <div class="head">
+              <h3>选择日期</h3>
+              <span class="ic-back"></span>
+          </div>
+        </div>
+        <div class="wrap">
+            <ul class="week-f">
+                <li>一</li>
+                <li>二</li>
+                <li>三</li>
+                <li>四</li>
+                <li>五</li>
+                <li class="wk">六</li>
+                <li class="wk">日</li>
+            </ul>
+
+            <div id="calendar"></div>
+
+            <!-- <P class="act"> -->
+                <!-- <button id="prevMonth">上一月</button> -->
+                <!-- <button id="nextMonth">下一月</button> -->
+                <!-- <button id="ok" @click.stop="show=false">确定</button> -->
+
+            <!-- </P> -->
+</div>
+<script src="./zepto.js"></script>
+<script src="./calendar.js"></script>
+<script>
+    var calendarIns = this.calendarIns
+    calendarIns = new calendar.Calendar({
+      count: 12,
+      selectDateName: '',
+      maxDate: new Date(),
+      isShowHoliday: true,
+      isShowWeek: false
+    })
+    $(calendarIns).on('afterSelectDate', function (event, params) {
+      // console.log('after select date')
+      // var curItem = params.curItem
+      var date = params.date
+      // var dateName = params.dateName
+
+      calendarIns.setSelectDate(date, params.startEnd)
+      if (calendarIns.startDate && calendarIns.endDate) {
+        console.log('选完了')
+        console.log('start: ', calendarIns.startDate)
+        console.log('end: ', calendarIns.endDate)
+      }
+      if (calendarIns.endDate) {
+        console.log('选完了')
+      }
+    })
+</script>
+</body>
+</html>
